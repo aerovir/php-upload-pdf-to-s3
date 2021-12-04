@@ -1,0 +1,50 @@
+version: '3.7'
+services: 
+    uploads3-php:
+        build: 
+            context: ./..
+            dockerfile: docker/php/Dockerfile
+        restart: always
+        networks: 
+            - upload-to-s3-net
+        volumes: 
+            - ../app:/app
+
+    uploads3-web:
+        build:
+            context: ./..
+            dockerfile: docker/nginx/Dockerfile
+        restart: always
+        ports:
+            - '7071:7071'
+        networks: 
+            - upload-to-s3-net
+        volumes: 
+            - ../app:/app
+              
+
+    uploads3-db:
+        build: 
+            context: ./..
+            dockerfile: docker/db/Dockerfile
+        restart: always
+        networks: 
+            - upload-to-s3-net
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DB}
+
+
+    uploads3-adminer:
+        build:
+            context: ./..
+            dockerfile: docker/adminer/Dockerfile
+        restart: always
+        ports:
+            - 7070:7070
+        networks: 
+            - upload-to-s3-net
+
+networks: 
+    upload-to-s3-net:
