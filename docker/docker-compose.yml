@@ -16,7 +16,7 @@ services:
             dockerfile: docker/nginx/Dockerfile
         restart: always
         ports:
-            - '7081:7081'
+            - '7071:7071'
         networks: 
             - upload-to-s3-net
         volumes: 
@@ -42,7 +42,7 @@ services:
             dockerfile: docker/adminer/Dockerfile
         restart: always
         ports:
-            - 7080:7080
+            - 7070:7070
         networks: 
             - upload-to-s3-net
 
