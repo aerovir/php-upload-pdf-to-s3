@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <form method="post">
     <p>
@@ -6,4 +6,6 @@
         <input type="submit" value="загрузить">
     </p>
 </form>
-</html>
+</html> -->
+
+<?php

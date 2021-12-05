@@ -21,30 +21,5 @@ services:
             - upload-to-s3-net
         volumes: 
             - ../app:/app
-              
-
-    uploads3-db:
-        build: 
-            context: ./..
-            dockerfile: docker/db/Dockerfile
-        restart: always
-        networks: 
-            - upload-to-s3-net
-        environment:
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            POSTGRES_DB: ${POSTGRES_DB}
-
-
-    uploads3-adminer:
-        build:
-            context: ./..
-            dockerfile: docker/adminer/Dockerfile
-        restart: always
-        ports:
-            - 7070:7070
-        networks: 
-            - upload-to-s3-net
-
 networks: 
     upload-to-s3-net:
