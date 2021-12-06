@@ -21,3 +21,9 @@ $client = new S3Client([
     'version' => 'latest',
     'region' => ''
 ]);
+
+access key ID
+hWJTXTdkdtc6PL7HpEFE25
+
+Secret Key
+cQZ4AYBhLKFFLh1LJsvs2Ci9ENEnkKS7S1fr2zzzf4Ta
