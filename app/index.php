@@ -2,8 +2,8 @@
 <html>
 <form method="post">
     <p>
-        <input type="file" name="uploadFile">
-        <input type="submit" value="загрузить">
+        <input type="file" name="PDFfile">
+        <input type="submit" value="загрузить" name="upload">
     </p>
 </form>
 </html> -->
@@ -19,11 +19,28 @@ $bucket = 'pdf-backet';
 
 $client = new S3Client([
     'version' => 'latest',
-    'region' => ''
+    'region' => 'eu-west-2',
+    'endpoint' => 'http://hb.bizmrg.com',
+    'credentials' => [
+        'key' => 'hWJTXTdkdtc6PL7HpEFE25',
+        'secret' => 'cQZ4AYBhLKFFLh1LJsvs2Ci9ENEnkKS7S1fr2zzzf4Ta',
+    ],
 ]);
 
-access key ID
-hWJTXTdkdtc6PL7HpEFE25
+if ($_POST) {
+    //Загружаем
+    if (isset($_POST['upload']) && isset($_FILES['PDFfile'])){
+        if ($_FILES['PDFfile']['error'][0] == 0){
+            $upload = new $client->putObject([
+                'Bucket' => $bucket,
+                'Key'
+            ])
+        }
+    }
+}
 
-Secret Key
-cQZ4AYBhLKFFLh1LJsvs2Ci9ENEnkKS7S1fr2zzzf4Ta
+// access key ID
+// hWJTXTdkdtc6PL7HpEFE25
+
+// Secret Key
+// cQZ4AYBhLKFFLh1LJsvs2Ci9ENEnkKS7S1fr2zzzf4Ta
