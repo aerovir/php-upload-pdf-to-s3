@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <form method="post">
     <p>
@@ -6,7 +6,7 @@
         <input type="submit" value="загрузить" name="upload">
     </p>
 </form>
-</html> -->
+</html>
 
 <?php
 require 'vendor/autoload.php';
@@ -31,10 +31,17 @@ if ($_POST) {
     //Загружаем
     if (isset($_POST['upload']) && isset($_FILES['PDFfile'])){
         if ($_FILES['PDFfile']['error'][0] == 0){
-            $upload = new $client->putObject([
-                'Bucket' => $bucket,
-                'Key'
-            ])
+            try {
+                $upload = new $client->putObject([
+                    'Bucket' => $bucket,
+                    'Key' => $_FILES9['PDFfile'],
+                    'acl' => 'public-read'
+                ]);
+                echo "uploaded successful";
+            } catch (Aws\S3\Exception\S3Exception $e) {
+                echo "There was an error uploading the file.\n";
+                echo $e->getMessage();
+            }
         }
     }
 }
